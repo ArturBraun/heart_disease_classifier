@@ -44,7 +44,19 @@ def normalize(data):
 
 
 def draw_analysis_plots(training_data, test_data):
-    pass
+    names = ["healthy", "heart disease"]
+    training_data_values = [np.count_nonzero(training_data[:, -1] == 0),
+                            np.count_nonzero(training_data[:, -1] == 1)]
+    test_data_values = [np.count_nonzero(test_data[:, -1] == 0),
+                        np.count_nonzero(test_data[:, -1] == 1)]
+
+    fig1, axs1 = plt.subplots(1, 2)
+    fig1.suptitle('Categories plot')
+    axs1[0].bar(names, training_data_values)
+    axs1[0].set_title("training data")
+    axs1[1].bar(names, test_data_values)
+    axs1[1].set_title("test data")
+    plt.show()
 
 
 def create_net(net_structure):
